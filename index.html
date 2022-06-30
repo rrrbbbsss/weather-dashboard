@@ -20,23 +20,20 @@
         <!-- search section -->
         <section id="searchSection" class="col-4">
             <!-- search form -->
-            <form id="search-form" class="d-grid gap-2 pb-2">
-                <label class="h2" for="search">Search for a City:</label>
-                <input class="form-control" name="search" id="searchText" type="text" autofocus="true" />
+            <form id="searchForm" class="d-grid gap-2 pb-2">
+                <label class="h2" for="searchInput">Search for a City:</label>
+                <input class="form-control" name="search" id="searchInput" type="text" autofocus="true" />
                 <button class="btn bg-primary" type="submit" >Search</button>
             </form>
             <!-- previous searches -->
-            <div class="border-top border-3 border-dark pt-2 d-grid gap-2 text-center ">
-                <button type="submit" class="btn btn-secondary">todo</button>
-                <button type="submit" class="btn btn-secondary">todo</button>
+            <div id="searchHistory" class="border-top border-3 border-dark pt-2 d-grid gap-2 text-center ">
+                <!-- button dyn created -->
             </div>
         </section>
         <!-- weather section -->
-        <section class="col-8">
-            <!-- current weather info -->
-            <div class="h-50">todo</div>
-            <!-- forecast -->
-            <div class="h-50">todo</div>
+        <section id="weatherSection" class="col-8">
+            <!-- current weather dyn created -->
+            <!-- forecast dyn created -->
         </section>
     </main>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha384-vtXRMe3mGCbOeY7l30aIg8H9p3GdeSe4IFlP6G8JMa7o7lXvnz3GFKzPxzJdPfGK" crossorigin="anonymous"></script>
