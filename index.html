@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather DashBoard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+</head>
+
+<body>
+    <!-- header -->
+    <header class="header bg-primary bg-gradient m-2 p-2 text-center">
+        <h1 class="h1 text-white">
+            Weather Dashboard
+        </h1>
+    </header>
+    <main class="row m-2 p-2 vh-100">
+        <!-- search section -->
+        <section class="col-4">
+            <!-- search form -->
+            <form id="search-form" class="d-grid gap-2 pb-2">
+                <label class="h2" for="search">Search for a City:</label>
+                <input class="form-control" name="search" id="search" type="text" autofocus="true" />
+                <button class="btn bg-primary" type="submit" >Search</button>
+            </form>
+            <!-- previous searches -->
+            <div class="border-top border-3 border-dark pt-2 d-grid gap-2 text-center ">
+                <button type="submit" class="btn btn-secondary">todo</button>
+                <button type="submit" class="btn btn-secondary">todo</button>
+            </div>
+        </section>
+        <!-- weather section -->
+        <section class="col-8">
+            <!-- current weather info -->
+            <div class="h-50">todo</div>
+            <!-- forecast -->
+            <div class="h-50">todo</div>
+        </section>
+    </main>
+    <script src="./assets/js/script.js"></script>
+</body>
+
+</html>
