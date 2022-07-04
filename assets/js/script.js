@@ -31,12 +31,14 @@ var dateString = function (unixtime) {
     var year = date.getFullYear();
     return month + "/" + day + "/" + year;
 }
+/// api stuff ///
 // https://openweathermap.org/city/5367815 -> DevTools -> Network
 var apiKey = "9de243494c0b295cca9337e1e96b00e2"
+
 var cityUrl = function (city) {
     return "https://api.openweathermap.org/geo/1.0/direct?" +
         "q=" + city +
-        "&limit=1" +
+        "&limit=" + "1" +
         "&appid=" + apiKey;
 };
 
@@ -44,7 +46,8 @@ var weatherUrl = function (lat, lon) {
     return "https://api.openweathermap.org/data/2.5/onecall?" +
         "lat=" + lat +
         "&lon=" + lon +
-        "&exclude=minutely,hourly,alerts" +
+        "&units=" + dashboardData.units +
+        "&exclude=" + "minutely,hourly,alerts" +
         "&appid=" + apiKey;
 };
 
