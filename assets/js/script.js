@@ -5,11 +5,13 @@ var dashboardData = {
     forcastLength: 5
 };
 
-// elements
-var searchSectionEl = $("#searchSection");
-var searchFormEl = $("#searchSection");
-var searchHistoryEl = $("#searchSection");
-var weatherSectionEl = $("#watherSection");
+/// elements ///
+var el = {
+    searchSection: $("#searchSection"),
+    searchForm: $("#searchForm"),
+    searchHistory: $("#searchHistory"),
+    weatherSection: $("#weatherSection")
+};
 
 // api stuff
 
