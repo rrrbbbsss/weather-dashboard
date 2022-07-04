@@ -31,6 +31,7 @@ var dateString = function (unixtime) {
     var year = date.getFullYear();
     return month + "/" + day + "/" + year;
 }
+
 /// api stuff ///
 // https://openweathermap.org/city/5367815 -> DevTools -> Network
 var apiKey = "9de243494c0b295cca9337e1e96b00e2"
@@ -121,8 +122,7 @@ var getWeatherData = async function (city) {
 /// current weather stuff ///
 /// forecast stuff ///
 
-// current weather stuff
-// forecast stuff
+/// save+load ///
 
 /// main+start ///
 var main = function () {
