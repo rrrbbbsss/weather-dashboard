@@ -1,6 +1,8 @@
-// global
+/// globals ///
 var dashboardData = {
-    history: []
+    history: [],
+    units: "imperial",
+    forcastLength: 5
 };
 
 // elements
