@@ -124,7 +124,9 @@ var getWeatherData = async function (city) {
 // current weather stuff
 // forecast stuff
 
-// save+load
+/// main+start ///
+var main = function () {
+    console.log("todo: main function");
+};
 
-// main
-// start
+main();
