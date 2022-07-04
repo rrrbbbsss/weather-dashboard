@@ -13,8 +13,24 @@ var el = {
     weatherSection: $("#weatherSection")
 };
 
-// api stuff
+/// utilities ///
+var getResponseJson = function (response) {
+    if (response.ok) {
+        return response.json();
+    }
+    else {
+        // todo: throw the response errors
+        console.log("response error todo");
+    }
+};
 
+var dateString = function (unixtime) {
+    var date = new Date(unixtime * 1000);
+    var day = date.getDate();
+    var month = date.getMonth() + 1;
+    var year = date.getFullYear();
+    return month + "/" + day + "/" + year;
+}
 // https://openweathermap.org/city/5367815 -> DevTools -> Network
 var apiKey = "9de243494c0b295cca9337e1e96b00e2"
 var cityUrl = function (city) {
