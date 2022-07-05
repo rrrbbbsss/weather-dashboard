@@ -1,6 +1,21 @@
 /// globals ///
 var dashboardData = {
     history: [],
+    historyLength: 10,
+    addCity: function (city) {
+        if (dashboardData.history.includes(city)) {
+            this.reorderCity(city);
+        }
+        else if (this.history.length < this.historyLength) {
+            this.history = [city].concat(this.history);
+        } else {
+            this.history.pop();
+            this.history = [city].concat(this.history);
+        }
+    },
+    reorderCity: function (city) {
+        this.history = [city].concat(this.history.filter(x => x !== city));
+    },
     units: "imperial",
     forcastLength: 5
 };
