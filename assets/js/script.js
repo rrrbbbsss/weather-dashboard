@@ -101,15 +101,22 @@ var extractDayWeather = function (day) {
 };
 
 var getWeatherData = async function (city) {
-    // todo: make distinction between network errors and bad city name errors
-    // and do not save bad city names
     try {
         // get city latitute/longitude for weather lookup
-        var cityRequest = fetch(cityUrl(city));
+        var cityRequest = fetch(cityUrl(city))
+            .catch(function (error) {
+                throw new Error("Potential Network Error");
+            });
         var cityData = await cityRequest.then(getResponseJson);
+        if (cityData.length === 0) {
+            throw new Error("Unable to find City");
+        }
         var locationData = extractCityLocation(cityData);
         // get weather data
-        var weatherRequest = fetch(weatherUrl(locationData.lat, locationData.lon));
+        var weatherRequest = fetch(weatherUrl(locationData.lat, locationData.lon))
+            .catch(function (error) {
+                throw new Error("Potential Network Error");
+            });
         var weatherData = await weatherRequest.then(getResponseJson);
         //current data
         var currentData = extractDayWeather(weatherData.current);
@@ -126,7 +133,7 @@ var getWeatherData = async function (city) {
         };
     }
     catch (error) {
-        return "there was an error somewhere";
+        throw error;
     }
 };
 
