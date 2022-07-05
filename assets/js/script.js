@@ -182,9 +182,127 @@ var searchHistoryHandler = function (event) {
     }
 };
 
+/// display weather stuff ///
+var displayCurrentWeather = function (parentEl, data) {
+    // create elements
+    var cardEl = $("<div>")
+        .addClass("card card-color");
+    var cardTitleEl = $("<h3>")
+        .addClass("card-title px-2 m-0")
+        .text(data.city + " (" + data.current.date + ") ");
+    var cardTitleIconEl = $("<img>")
+        .attr("height", "50")
+        .attr("width", "50")
+        .attr("alt", data.current.iconAlt)
+        .attr("src", iconUrl(data.current.icon));
+    var cardListEl = $("<ul>")
+        .addClass("list-group");
+    var cardTempEl = $("<li>")
+        .addClass("list-group-item")
+        .text("Temp: " + data.current.temperature + " °F");
+    var cardWindEl = $("<li>")
+        .addClass("list-group-item")
+        .text("Wind: " + data.current.windspeed + " MPH");
+    var cardHumidityEl = $("<li>")
+        .addClass("list-group-item")
+        .text("Humidity: " + data.current.humidity + " %");
+    var cardUvEl = $("<li>")
+        .addClass("list-group-item")
+        .text("Uv Index: ");
+    var cardUvIndexEl = $("<span>")
+        .addClass(getUvClass(data.current.uvi) + " px-1 rounded")
+        .text(data.current.uvi);
+    // add card to parent
+    parentEl.append(cardEl);
+    // add card title elements
+    cardEl.append(cardTitleEl);
+    cardTitleEl.append(cardTitleIconEl);
+    // add card list elements
+    cardEl.append(cardListEl);
+    cardListEl.append(cardTempEl);
+    cardListEl.append(cardWindEl);
+    cardListEl.append(cardHumidityEl);
+    cardListEl.append(cardUvEl);
+    // add uv index span
+    cardUvEl.append(cardUvIndexEl);
+};
 
-/// current weather stuff ///
-/// forecast stuff ///
+var displayForecastWeather = function (parentEl, data) {
+    // create elements
+    var cardEl = $("<div>")
+        .addClass("card card-color");
+    var cardTitleEl = $("<h3>")
+        .addClass("card-title m-0 px-2 py-1")
+        .text("5-Day Forecast:");
+    var cardBodyEl = $("<div>")
+        .addClass("card-body d-flex flex-wrap justify-content-evenly")
+    // loop through
+    data.forecast.forEach(function (x) {
+        var cardEl = $("<div>")
+            .addClass("card text-center");
+        var cardListEl = $("<ul>")
+            .addClass("list-group");
+        var cardDateEl = $("<li>")
+            .addClass("list-group-item forecast")
+            .text(x.date);
+        var cardIconDivEl = $("<li>")
+            .addClass("list-group-item forecast");
+        var cardIconImgEl = $("<img>")
+            .addClass("m-auto")
+            .attr("height", "50")
+            .attr("width", "50")
+            .attr("alt", x.iconAlt)
+            .attr("src", iconUrl(x.icon));
+        var cardTempEl = $("<li>")
+            .addClass("list-group-item forecast")
+            .text("Temp: " + x.temperature + " °F");
+        var cardWindEl = $("<li>")
+            .addClass("list-group-item forecast")
+            .text("Wind: " + x.windspeed + " MPH");
+        var cardHumidityEl = $("<li>")
+            .addClass("list-group-item forecast")
+            .text("Humidity: " + x.humidity + " %");
+        // add to parent
+        cardBodyEl.append(cardEl);
+        cardEl.append(cardListEl);
+        cardListEl.append(cardDateEl, cardIconDivEl, cardTempEl, cardWindEl, cardHumidityEl);
+        cardIconDivEl.append(cardIconImgEl);
+    });
+    // add card to parent
+    parentEl.append(cardEl);
+    // add card title elements
+    cardEl.append(cardTitleEl);
+    cardEl.append(cardBodyEl);
+};
+
+var displayError = function (parentEl, message) {
+    // clear out old info and display error message
+    parentEl.empty();
+    var errorEl = $("<div>")
+        .addClass("bg-danger h3 p-3 text-center")
+        .text("Error: " + message);
+    parentEl.append(errorEl);
+}
+
+var displayWeather = async function (parentEl, city) {
+    try {
+        // get data
+        var data = await getWeatherData(city);
+        save(city);
+        // create weather/forecast divs
+        var currentWeatherEl = $("<div>").addClass("pb-3");
+        var forecastWeatherEl = $("<div>");
+        // build up content for div
+        displayCurrentWeather(currentWeatherEl, data);
+        displayForecastWeather(forecastWeatherEl, data);
+        // clear out old info and display new stuff
+        parentEl.empty();
+        parentEl.append(currentWeatherEl, forecastWeatherEl);
+    }
+    catch (error) {
+        displayError(parentEl, error.message);
+    }
+};
 
 /// save+load ///
 var save = function (city) {
