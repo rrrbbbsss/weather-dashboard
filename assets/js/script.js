@@ -69,15 +69,15 @@ var iconUrl = function (iconId) {
     return "https://openweathermap.org/img/wn/" + iconId + "@2x.png";
 };
 
-var uvCondition = function (uvi) {
+var getUvClass = function (uvi) {
     if (uvi < 3) {
-        return "favorable";
+        return "bg-success";
     }
     else if (uvi < 6) {
-        return "moderate";
+        return "bg-warning";
     }
     else {
-        return "severe";
+        return "bg-danger";
     }
 };
 
