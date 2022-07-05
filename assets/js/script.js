@@ -187,6 +187,22 @@ var searchHistoryHandler = function (event) {
 /// forecast stuff ///
 
 /// save+load ///
+var save = function (city) {
+    dashboardData.addCity(city);
+    localStorage.setItem("cities", JSON.stringify(dashboardData.history));
+    // refresh the search history list
+    displaySearchHistory(searchHistoryEl);
+};
+
+var load = function () {
+    dashboardData.history = JSON.parse(localStorage.getItem("cities")) || [];
+    // set the value for the searchInput and load the first city:
+    var city = dashboardData.history[0] || "";
+    if (city) {
+        searchInputEl.val(city);
+        displayWeather(weatherSectionEl, city);
+    }
+};
 
 /// main+start ///
 var main = function () {
