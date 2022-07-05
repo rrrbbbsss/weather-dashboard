@@ -81,12 +81,13 @@ var getUvClass = function (uvi) {
     }
 };
 
-var extractCityLocation = function (city) {
+var extractCityLocation = function (cityData) {
     return {
-        lat: city[0].lat,
-        lon: city[0].lon,
-    };
+        lat: cityData[0].lat,
+        lon: cityData[0].lon,
+    }
 };
+
 var extractDayWeather = function (day) {
     return {
         date: dateString(day.dt),
