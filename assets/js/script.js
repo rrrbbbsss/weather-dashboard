@@ -160,6 +160,28 @@ var searchHandler = function (event) {
 };
 
 /// city list stuff ///
+var displaySearchHistory = function (parentEl) {
+    // clear out parent
+    parentEl.empty();
+    dashboardData.history.forEach(function (x) {
+        var buttonEl = $("<button>")
+            .addClass("btn btn-secondary")
+            .text(x);
+        parentEl.append(buttonEl);
+    })
+};
+
+var searchHistoryHandler = function (event) {
+    var city = $(this).text();
+    // if search was empty don't do anything
+    if (city !== "") {
+        searchInputEl.val(city);
+        displayWeather(weatherSectionEl, city);
+        dashboardData.reorderCity(city);
+        displaySearchHistory(searchHistoryEl);
+    }
+};
+
 
 /// current weather stuff ///
 /// forecast stuff ///
