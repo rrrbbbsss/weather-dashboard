@@ -137,7 +137,28 @@ var getWeatherData = async function (city) {
     }
 };
 
+// sanitize an input string
+var sanitizeInput = function (input) {
+    // remove reduntand white spaces before, after, and inbetween, and Capitalize each word
+    var clean = input
+        .trim()
+        .split(" ")
+        .filter(x => x !== "" && x !== "\t")
+        .map(x => x[0].toUpperCase() + x.substr(1))
+        .join(" ");
+    return clean;
+};
+
 /// search stuff ///
+var searchHandler = function (event) {
+    event.preventDefault();
+    var search = sanitizeInput(searchInputEl.val());
+    // if search was empty don't do anything
+    if (search !== "") {
+        displayWeather(weatherSectionEl, search);
+    }
+};
+
 /// city list stuff ///
 
 /// current weather stuff ///
