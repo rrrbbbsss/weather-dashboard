@@ -1,0 +1,16 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+.forecast {
+    background-color: #5259A4;
+    color: white;
+}
+
+.card-color {
+    background-color: #133d80;
+    color: white;
+}
