@@ -324,7 +324,12 @@ var load = function () {
 
 /// main+start ///
 var main = function () {
-    console.log("todo: main function");
+    // register handlers
+    searchFormEl.on("submit", searchHandler);
+    searchHistoryEl.on("click", ".btn", searchHistoryHandler);
+    // load and display search History
+    load();
+    displaySearchHistory(searchHistoryEl);
 };
 
 main();
