@@ -33,8 +33,7 @@ var getResponseJson = function (response) {
         return response.json();
     }
     else {
-        // todo: throw the response errors
-        console.log("response error todo");
+        throw new Error("Weather API call response error");
     }
 };
 
