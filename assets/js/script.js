@@ -145,8 +145,9 @@ var sanitizeInput = function (input) {
         .trim()
         .split(" ")
         .filter(x => x !== "" && x !== "\t")
-        .map(x => x[0].toUpperCase() + x.substr(1).map(x => x.toLowerCase()))
+        .map(x => x[0].toUpperCase() + x.substr(1).toLowerCase())
         .join(" ");
+        console.log(clean)
     return clean;
 };
 
