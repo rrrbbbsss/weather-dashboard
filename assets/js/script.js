@@ -139,12 +139,13 @@ var getWeatherData = async function (city) {
 
 // sanitize an input string
 var sanitizeInput = function (input) {
-    // remove reduntand white spaces before, after, and inbetween, and Capitalize each word
+    // remove reduntand white spaces before, after, and inbetween, 
+    // Capitalize the first letter of each word, and lowercase all other letters
     var clean = input
         .trim()
         .split(" ")
         .filter(x => x !== "" && x !== "\t")
-        .map(x => x[0].toUpperCase() + x.substr(1))
+        .map(x => x[0].toUpperCase() + x.substr(1).map(x => x.toLowerCase()))
         .join(" ");
     return clean;
 };
