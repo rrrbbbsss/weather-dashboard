@@ -91,11 +91,11 @@ var extractDayWeather = function (day) {
     return {
         date: dateString(day.dt),
         icon: day.weather[0].icon,
+        iconAlt: day.weather[0].description,
         temperature: (day.temp.day || day.temp),
         humidity: day.humidity,
         windspeed: day.wind_speed,
-        uvi: day.uvi,
-        uvCondition: uvCondition(day.uvi),
+        uvi: day.uvi
     };
 };
 
