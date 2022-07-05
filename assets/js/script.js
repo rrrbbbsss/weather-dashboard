@@ -21,12 +21,11 @@ var dashboardData = {
 };
 
 /// elements ///
-var el = {
-    searchSection: $("#searchSection"),
-    searchForm: $("#searchForm"),
-    searchHistory: $("#searchHistory"),
-    weatherSection: $("#weatherSection")
-};
+var searchSectionEl = $("#searchSection");
+var searchFormEl = $("#searchForm");
+var searchInputEl = $("#searchInput");
+var searchHistoryEl = $("#searchHistory");
+var weatherSectionEl = $("#weatherSection");
 
 /// utilities ///
 var getResponseJson = function (response) {
