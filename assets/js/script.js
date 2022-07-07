@@ -146,7 +146,9 @@ var sanitizeInput = function (input) {
         .split(" ")
         .filter(x => x !== "" && x !== "\t")
         .map(x => x[0].toUpperCase() + x.substr(1).toLowerCase())
-        .join(" ");
+        .map(x => (x.match(/[a-z]|[A-Z]|[0-9]/g) || []).join(""))
+        .join(" ")
+        .trim();
     return clean;
 };
 
@@ -156,6 +158,7 @@ var searchHandler = function (event) {
     var search = sanitizeInput(searchInputEl.val());
     // if search was empty don't do anything
     if (search !== "") {
+        searchInputEl.val(search);
         displayWeather(weatherSectionEl, search);
     }
 };
